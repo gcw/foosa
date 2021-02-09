@@ -63,3 +63,7 @@ variable "log_versioning_enabled" {
   description = "When true, the access logs bucket will be versioned"
 }
 
+variable "origin_force_destroy" {
+  type = bool
+  default = true
+}

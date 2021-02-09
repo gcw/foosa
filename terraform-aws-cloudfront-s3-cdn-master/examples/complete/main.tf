@@ -5,7 +5,7 @@ provider "aws" {
 module "logs" {
   source                   = "cloudposse/s3-log-storage/aws"
   #version                  = "0.18.0"
-  enabled                  = false
+  enabled                  = true
   attributes               = compact(concat(module.this.attributes, var.extra_logs_attributes))
   lifecycle_prefix         = var.log_prefix
   standard_transition_days = var.log_standard_transition_days
@@ -20,8 +20,8 @@ module "logs" {
 module "cloudfront_s3_cdn" {
   source                   = "../../"
   context                  = module.this.context
-  parent_zone_name         = var.parent_zone_name
-  dns_alias_enabled        = true
+  parent_zone_name         = "fooness.com"
+  dns_alias_enabled        = false
   use_regional_s3_endpoint = true
   origin_force_destroy     = true
   cors_allowed_headers     = ["*"]
